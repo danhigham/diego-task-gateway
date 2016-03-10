@@ -1,0 +1,5 @@
+check process gateway_server
+  with pidfile /var/vcap/sys/run/gateway_server/pid
+  start program "/var/vcap/jobs/gateway_server/bin/ctl start"
+  stop program "/var/vcap/jobs/gateway_server/bin/ctl stop"
+  group vcap

@@ -1,0 +1,30 @@
+{
+  "rootfs": "docker:///busybox",
+  "action": {
+    "serial": {
+      "actions": [
+        {
+          "run": {
+            "path": "bash",
+            "args": [
+              "-c",
+              "source ~/.profile; cd /root/neural-style; th neural_style.lua -gpu -1 > /tmp/result-file.txt;"
+            ],
+            "resource_limits": {},
+            "user": "root",
+            "suppress_log_output": false
+          }
+        }
+      ]
+    }
+  },
+  "disk_mb": 0,
+  "memory_mb": 2048,
+  "cpu_weight": 0,
+  "privileged": false,
+  "log_source": "",
+  "log_guid": "",
+  "metrics_guid": "",
+  "result_file": "result-file.txt",
+  "completion_callback_url": "http://10.244.16.6:6660"
+}

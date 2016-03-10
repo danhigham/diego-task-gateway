@@ -1,0 +1,22 @@
+---
+name: gateway_server
+templates:
+  ctl.erb: bin/ctl
+  conf.json.erb: config/conf.json
+  client.cert.erb: config/client.cert
+  client.key.erb: config/client.key
+
+packages:
+- gateway_server
+- golang1.5
+
+properties:
+  gateway_server.bbs.api_location:
+    description: Address for BBS server
+    default: bbs.service.cf.internal:8889
+
+  gateway_server.bbs.client_cert:
+    description: Client certificate for BBS
+
+  gateway_server.bbs.client_key:
+    description: Client key for BBS

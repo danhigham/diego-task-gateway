@@ -1,0 +1,8 @@
+---
+name: gateway_server
+
+dependencies:
+- golang1.5
+
+files:
+- gateway_server/**/*
