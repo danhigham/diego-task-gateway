@@ -5,10 +5,10 @@
       "actions": [
         {
           "run": {
-            "path": "bash",
+            "path": "sh",
             "args": [
               "-c",
-              "source ~/.profile; cd /root/neural-style; th neural_style.lua -gpu -1 > /tmp/result-file.txt;"
+              "free -m > /tmp/result-file.txt;"
             ],
             "resource_limits": {},
             "user": "root",
@@ -19,12 +19,11 @@
     }
   },
   "disk_mb": 0,
-  "memory_mb": 2048,
+  "memory_mb": 0,
   "cpu_weight": 0,
   "privileged": false,
   "log_source": "",
   "log_guid": "",
   "metrics_guid": "",
-  "result_file": "result-file.txt",
-  "completion_callback_url": "http://10.244.16.6:6660"
+  "result_file": "/tmp/result-file.txt"
 }

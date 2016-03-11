@@ -1,5 +1,5 @@
 {
-  "BBSAddress": "<%= p('task_gateway.bbs.api_location') %>",
-  "CertFile": "/var/vcap/jobs/task_gateway/config/client.cert",
-  "KeyFile": "/var/vcap/jobs/task_gateway/config/client.key"
+  "BBSAddress": "https://<%= p('diego.bbs.api_location') %>",
+  "CertFile": "/var/vcap/jobs/gateway_server/config/client.cert",
+  "KeyFile": "/var/vcap/jobs/gateway_server/config/client.key"
 }

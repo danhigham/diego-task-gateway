@@ -11,12 +11,12 @@ packages:
 - golang1.5
 
 properties:
-  gateway_server.bbs.api_location:
+  diego.bbs.api_location:
     description: Address for BBS server
     default: bbs.service.cf.internal:8889
 
-  gateway_server.bbs.client_cert:
+  diego.bbs.client_cert:
     description: Client certificate for BBS
 
-  gateway_server.bbs.client_key:
+  diego.bbs.client_key:
     description: Client key for BBS

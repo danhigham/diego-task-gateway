@@ -14,7 +14,7 @@ case $1 in
 
     cd /var/vcap/packages/gateway_server
 
-    exec /var/vcap/packages/gateway_server/bin/server \
+    exec /var/vcap/packages/gateway_server/bin/gateway_server \
       >>  $LOG_DIR/gateway_server.stdout.log \
       2>> $LOG_DIR/gateway_server.stderr.log
 

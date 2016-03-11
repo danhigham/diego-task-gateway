@@ -4,6 +4,7 @@ import (
 	"github.com/cloudfoundry-incubator/bbs"
 	"github.com/cloudfoundry-incubator/bbs/models"
 	"github.com/nu7hatch/gouuid"
+	"fmt"
 )
 
 type BBSClient struct {
@@ -13,11 +14,16 @@ type BBSClient struct {
   client          bbs.Client
 }
 
-func (b *BBSClient) Connect() {
-  client, _ := bbs.NewSecureSkipVerifyClient(b.bbsUrl, b.clientCertFile, b.clientKeyFile, 8192, 10)
-	b.client = client
-}
+func (b *BBSClient) Connect() error {
+  client, err := bbs.NewSecureSkipVerifyClient(b.bbsUrl, b.clientCertFile, b.clientKeyFile, 8192, 10)
 
+	if err != nil {
+		return err
+	}
+
+	b.client = client
+	return nil
+}
 
 func (b *BBSClient) DesireTask(task *models.TaskDefinition) string {
   u, _ := uuid.NewV4()
@@ -28,22 +34,26 @@ func (b *BBSClient) DesireTask(task *models.TaskDefinition) string {
 		return guid
 	}
 
-  return ""
+  return fmt.Sprintf("%+v", err)
 }
 
-func (b *BBSClient) GetTask(id string) *models.Task {
+func (b *BBSClient) GetTask(id string) (*models.Task, error) {
   task, err := b.client.TaskByGuid(id)
 
   if err == nil  {
-    return task
+    return task, nil
   }
 
-	return &models.Task{}
+	return nil, err
 }
 
-func NewBBSClient(url, cert, key string) BBSClient {
-  client := BBSClient{bbsUrl: url, clientCertFile: cert, clientKeyFile: key}
-  client.Connect()
+func NewBBSClient(url, cert, key string) (*BBSClient, error) {
+  client := &BBSClient{bbsUrl: url, clientCertFile: cert, clientKeyFile: key}
+  err := client.Connect()
 
-	return client
+	if err != nil {
+		return nil, err
+	}
+
+	return client, nil
 }
